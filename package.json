@@ -1,23 +1,23 @@
 {
   "name": "project-enc",
-  "version": "1.0.0",
-  "description": "Project-enc is an open-source Node.JS encryption algorithm that uses seed based encryption and decryption. (Similar how minecraft generates worlds based on a unique seed)",
-  "main": "index.js",
+  "version": "1.0.1",
+  "description": "simple seed based encryption script",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "desc",
+  "license": "ISC",
+  "dependencies": {
+    "aes256": "^1.1.0"
+  },
+  "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/posh/project-enc.git"
+    "url": "git+https://github.com/descisgay/project-enc.git"
   },
-  "author": "",
-  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/posh/project-enc/issues"
+    "url": "https://github.com/descisgay/project-enc/issues"
   },
-  "homepage": "https://github.com/posh/project-enc#readme",
-  "dependencies": {
-    "crypto": "^1.0.1",
-    "readline-sync": "^1.4.10"
-  }
+  "homepage": "https://github.com/descisgay/project-enc#readme"
 }
