@@ -1,23 +1,53 @@
-const crypto = require('crypto')
-const readline = require('readline-sync')
+const aes256 = require("aes256");
+const readline = require("readline");
+const crypto = require("crypto");
 
-var d = 0
-var e = 1
+var decrypted, encrypted;
 
-var func = readline.question("decrypt(0) or encrypt(1)? ")
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
-if (func < e) {
-  var msg = readline.question("message to encrypt?: ")
-  console.log(msg)
+rl.question("decrypt or encrypt? ", function(dore) {
+    if(dore == "decrypt") {
+        rl.question("seed: ", function(dseed) {
 
-  var seed = readline.question("seed? (leave blank for random seed): ")
-  console.log(seed)
+            if(dseed == "") {
+                console.log("no seed specified, please try again");
+                return process.exit();
+            };
 
-} else if (func > d) {
-  var seed = readline.question("seed? (leave blank for random seed): ")
-  console.log(seed)
+            rl.question("encrypted string: ", function(dstring) {
+                if(dstring == "") {
+                    console.log("no string provided, please try again");
+                } else {
+                    decrypted = aes256.decrypt(dseed, dstring);
+                    console.log("decrypted string: " + decrypted.toString());
+                    return process.exit();
+                };
+            });
+        });
+    } else if(dore == "encrypt") {
+        rl.question("seed (leave blank for an auto-generated seed): ", function(eseed) {
 
-} else {
-  console.log("please restart the program.")
+            if(eseed == "") {
+                eseed = crypto.randomBytes(8).toString("hex");
+                console.log("your auto-generated seed: " + eseed);
+            };
 
-}
+            rl.question("string to encrypt: ", function(estring) {
+                if(estring == "") {
+                    console.log("no string provided, please try again");
+                } else{
+                    encrypted = aes256.encrypt(eseed, estring);
+                    console.log("encrypted string: " + encrypted.toString());
+                    return process.exit();
+                };
+            });
+        });
+    } else if (dore != "decrypt" | dore != "encrypt") {
+        console.log("invalid answer, please try again.");
+        return process.exit();
+    }
+});
