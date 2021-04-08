@@ -1,10 +1,10 @@
 {
   "name": "project-enc",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "simple seed based encryption script",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node app.js -test"
   },
   "author": "desc",
   "license": "ISC",
