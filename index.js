@@ -1,14 +1,36 @@
+//PACKAGES
 const aes256 = require("aes256");
 const readline = require("readline");
 const crypto = require("crypto");
 
-var decrypted, encrypted;
+//VARIABLES
+var decrypted, encrypted, testseed, testenc, testdec;
 
+//INITIALIZING READLINE
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
+//TEST COMMAND FOR NPM
+if(process.argv[2] == "-test") {
+    console.log("testing");
+
+    testseed = crypto.randomBytes(8).toString("hex");
+    testenc = aes256.encrypt(testseed, "testing encryption");
+    testdec = aes256.decrypt(testseed, testenc)
+
+    console.log("random test seed: " + testseed);
+    console.log(`encrypted string (should result in "testing encryption" when decrypted): ` + testenc)
+    console.log(`decrypted string (should be "testing encryption"): ` + testdec)
+    
+    if(testdec != "testing encryption") {
+        console.log("something went wrong, check app.js for any errors, also make sure you have all the requirements installed by running npm init")
+    };
+    return process.exit();
+};
+
+//MAIN
 rl.question("decrypt or encrypt? ", function(dore) {
     if(dore == "decrypt") {
         rl.question("seed: ", function(dseed) {
