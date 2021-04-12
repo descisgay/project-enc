@@ -1,4 +1,4 @@
-Project-enc is an open-source Node.JS encryption algorithm that uses seed based encryption and decryption. (Similar how minecraft generates worlds based on a unique seed)
+Project-enc is an open-source Node.JS encryption tool that uses seed based encryption and decryption. (Similar how minecraft generates worlds based on a unique seed)
 
 In order to encrypt a string of text, or file, you can either:
 
